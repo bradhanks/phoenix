@@ -141,7 +141,7 @@ To understand how to render JSON, let's start with the `index` action from `UrlC
 
 As we can see, this is not any different from how Phoenix renders HTML templates. We call `render/3`, passing the connection, the template we want our views to render (`:index`), and the data we want to make available to our views.
 
-Phoenix typically uses one view per rendering format. When rendering HTML, we would use `HelloHTML`. Now that we are rendering JSON, we will find a `UrlJSON` view collocated with the template at `lib/hello_web/controllers/url_json.ex`. Let's open it up:
+Phoenix typically uses one view per rendering format. When rendering HTML, we would use `UrlHTML`. Now that we are rendering JSON, we will find a `UrlJSON` view collocated with the template at `lib/hello_web/controllers/url_json.ex`. Let's open it up:
 
 ```elixir
 defmodule HelloWeb.UrlJSON do
@@ -325,8 +325,8 @@ The output should contain the following:
     track JavaScript dependencies
   • --no-gettext - do not generate gettext files
   • --no-html - do not generate HTML views
-  • --no-live - comment out LiveView socket setup in
-    assets/js/app.js. Automatically disabled if --no-html is given
+  • --no-live - comment out LiveView socket setup in your Endpoint
+    and assets/js/app.js. Automatically disabled if --no-html is given
   • --no-mailer - do not generate Swoosh mailer files
   • --no-tailwind - do not include tailwind dependencies and
     assets. The generated markup will still include Tailwind CSS

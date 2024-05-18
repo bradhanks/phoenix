@@ -202,6 +202,10 @@ defmodule Phoenix.Endpoint.Supervisor do
       render_errors: [view: render_errors(module), accepts: ~w(html), layout: false],
 
       # Runtime config
+
+      # Even though Bandit is the default in apps generated via the installer,
+      # we continue to use Cowboy as the default if not explicitly specified for
+      # backwards compatibility. TODO: Change this to default to Bandit in 2.0
       adapter: Phoenix.Endpoint.Cowboy2Adapter,
       cache_static_manifest: nil,
       check_origin: true,
@@ -377,7 +381,7 @@ defmodule Phoenix.Endpoint.Supervisor do
   end
 
   defp warmup_static(endpoint, %{"latest" => latest, "digests" => digests}) do
-    Phoenix.Config.put_new(endpoint, :cache_static_manifest_latest, latest)
+    Phoenix.Config.put(endpoint, :cache_static_manifest_latest, latest)
     with_vsn? = !endpoint.config(:cache_manifest_skip_vsn)
 
     Enum.each(latest, fn {key, _} ->

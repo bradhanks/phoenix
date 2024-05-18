@@ -154,7 +154,7 @@ $ mix phx.gen.json Blog Post posts title:string content:string
 When `mix phx.gen.json` is done creating files, it helpfully tells us that we need to add a line to our router file as well as run our Ecto migrations.
 
 ```console
-Add the resource to your :api scope in lib/hello_web/router.ex:
+Add the resource to the "/api" scope in lib/hello_web/router.ex:
 
     resources "/posts", PostController, except: [:new, :edit]
 
@@ -804,7 +804,7 @@ Indeed it does.
 If you want to make your new Mix task to use your application's infrastructure, you need to make sure the application is started and configure when Mix task is being executed. This is particularly useful if you need to access your database from within the Mix task. Thankfully, Mix makes it really easy for us via the `@requirements` module attribute:
 
 ```elixir
-  @requirements ["app.config"]
+  @requirements ["app.start"]
 
   @impl Mix.Task
   def run(_args) do
